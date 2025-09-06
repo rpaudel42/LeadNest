@@ -4,6 +4,10 @@ import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 
 const PLATFORM_OPTS = ['instagram','facebook','linkedin','tiktok','x'] as const;
 const EMOJI_OPTS = ['none','minimal','heavy'] as const;
+function isPlatform(p: string): p is typeof PLATFORM_OPTS[number] {
+  return PLATFORM_OPTS.includes(p as any);
+}
+
 
 export async function GET() {
   try {
@@ -45,7 +49,7 @@ export async function POST(req: Request) {
       geo_focus: b.geo_focus || null,
       preferred_hashtags: arr(b.preferred_hashtags).map((s:string)=>s.trim().replace(/^#/,'')),
       banned_hashtags: arr(b.banned_hashtags).map((s:string)=>s.trim().replace(/^#/,'')),
-      platforms: arr(b.platforms).filter((p:string)=>PLATFORM_OPTS.includes(p)),
+      platforms: arr(b.platforms).filter(isPlatform),
       emoji_style: EMOJI_OPTS.includes(b.emoji_style) ? b.emoji_style : 'minimal',
       frequency: Number.isFinite(+b.frequency) ? +b.frequency : null,
       preferred_times: arr(b.preferred_times),
