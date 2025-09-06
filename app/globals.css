@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Light theme tokens */
+:root {
+  --bg: 255 255 255;             /* white */
+  --bg-muted: 247 247 251;        /* surface.soft */
+  --text: 17 24 39;               /* zinc-900-ish */
+  --muted: 107 114 128;           /* zinc-500 */
+  --ring: 229 231 235;            /* surface.ring */
+  --brand: 44 120 255;            /* brand-500 */
+  --accent: 52 209 121;           /* accent-500 */
+}
+
+/* Dark theme tokens */
+.dark {
+  --bg: 11 12 16;                 /* surface.dark */
+  --bg-muted: 15 17 23;           /* surface.darkSoft */
+  --text: 229 231 235;            /* zinc-200 */
+  --muted: 148 163 184;           /* slate-400 */
+  --ring: 38 41 49;               /* darker ring */
+  --brand: 82 152 255;            /* bump contrast */
+  --accent: 97 254 153;
+}
+
+/* App background + text */
+html, body {
+  background: rgb(var(--bg));
+  color: rgb(var(--text));
+}
+
+/* Pretty container & cards */
+.container-app { @apply max-w-6xl mx-auto px-4; }
+.card {
+  @apply bg-white dark:bg-[rgb(var(--bg-muted))] border border-[rgb(var(--ring))] rounded-2xl p-5 shadow-soft;
+}
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 font-medium;
+}
+.btn-primary {
+  background: rgb(var(--brand));
+  @apply text-white hover:opacity-90;
+}
+.btn-outline {
+  @apply border border-[rgb(var(--ring))] text-[rgb(var(--text))] hover:bg-[rgb(var(--bg-muted))];
+}
+
+/* Inputs */
+.input {
+  @apply w-full rounded-xl border border-[rgb(var(--ring))] bg-white dark:bg-[rgb(var(--bg-muted))]
+         px-3 py-2 outline-none focus:ring-4 focus:ring-[color:rgb(var(--brand))/15];
+}
+
+/* Subtle gradient header background (optional) */
+.header-grad {
+  background: radial-gradient(1200px 300px at 20% -20%, rgba(44,120,255,0.15), transparent),
+              radial-gradient(800px 200px at 80% -10%, rgba(52,209,121,0.15), transparent);
+}
+
+/* Match selects to .input */
+.select {
+  @apply w-full rounded-xl border border-[rgb(var(--ring))] bg-white dark:bg-[rgb(var(--bg-muted))]
+         px-3 py-2 outline-none focus:ring-4 focus:ring-[color:rgb(var(--brand))/15]
+         appearance-none; /* hide native arrow */
+}
+
+/* (optional) remove old Edge arrow */
+.select::-ms-expand { display: none; }
