@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils"; // or your classnames helper
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: "primary" | "outline";
-  loading?: boolean; // 👈 add this
+  loading?: boolean; 
 };
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
